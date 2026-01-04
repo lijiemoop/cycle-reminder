@@ -1,0 +1,57 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 顶部日期 -->
+  <view class="header">
+    <view class="date">{{todayDate}}</view>
+    <view class="subtitle">今日待办 {{uncheckedCount}}</view>
+  </view>
+
+  <!-- 事项列表 -->
+  <view class="item-list" wx:if="{{items.length > 0}}">
+    <view
+      class="item-item"
+      wx:for="{{items}}"
+      wx:key="_id"
+      data-id="{{item._id}}"
+      bindtap="goToDetail"
+    >
+      <view class="item-icon" style="background: {{item.iconBg || '#07c160'}}">
+        <text class="icon-text">{{item.icon || '📌'}}</text>
+      </view>
+      <view class="item-info">
+        <view class="item-name">{{item.name}}</view>
+        <view class="item-time" wx:if="{{item.remindTime}}">
+          提醒时间: {{item.remindTime}}
+        </view>
+        <view class="item-progress">
+          <text class="progress-text {{item.completed ? 'completed' : ''}}">{{item.checkinCount || 0}}/{{item.dailyTarget || 1}}</text>
+          <text class="progress-status" wx:if="{{item.completed}}">已完成</text>
+        </view>
+      </view>
+      <view
+        class="check-btn {{item.completed ? 'checked' : ''}}"
+        data-id="{{item._id}}"
+        data-index="{{index}}"
+        catchtap="onCheckin"
+      >
+        <text wx:if="{{item.completed}}">✓</text>
+        <text wx:else>+</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:elif="{{!loading}}">
+    <image src="/images/empty.png" mode="aspectFit"></image>
+    <text>还没有事项，快去添加吧</text>
+    <button class="btn btn-primary mt-30" bindtap="goToAdd">添加事项</button>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add-btn" bindtap="goToAdd">+</view>
+</view>

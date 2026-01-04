@@ -1,0 +1,113 @@
+<!--pages/add/add.wxml-->
+<view class="container">
+  <!-- 事项名称 -->
+  <view class="form-group">
+    <view class="form-label">事项名称</view>
+    <input
+      class="form-input"
+      placeholder="请输入事项名称"
+      value="{{name}}"
+      bindinput="onNameInput"
+      maxlength="20"
+    />
+  </view>
+
+  <!-- 事项描述 -->
+  <view class="form-group">
+    <view class="form-label">描述（可选）</view>
+    <textarea
+      class="form-textarea"
+      placeholder="添加描述"
+      value="{{description}}"
+      bindinput="onDescInput"
+      maxlength="200"
+    />
+  </view>
+
+  <!-- 周期类型 -->
+  <view class="form-group">
+    <view class="form-label">执行周期</view>
+    <picker mode="selector" range="{{['每日', '每周', '每月', '自定义']}}" bindchange="onCycleTypeChange">
+      <view class="picker-value">
+        <text>{{cycleType === 'daily' ? '每日' : cycleType === 'weekly' ? '每周' : cycleType === 'monthly' ? '每月' : '自定义'}}</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 每周执行日 -->
+  <view class="form-group" wx:if="{{cycleType === 'weekly'}}">
+    <view class="form-label">选择星期</view>
+    <checkbox-group bindchange="onWeekDayChange">
+      <view class="week-days">
+        <label
+          class="week-day {{cycleDays.includes(item.value) ? 'active' : ''}}"
+          wx:for="{{weekDays}}"
+          wx:key="value"
+        >
+          <checkbox value="{{item.value}}" checked="{{cycleDays.includes(item.value)}}"/>
+          <text>{{item.label}}</text>
+        </label>
+      </view>
+    </checkbox-group>
+  </view>
+
+  <!-- 每月执行日 -->
+  <view class="form-group" wx:if="{{cycleType === 'monthly'}}">
+    <view class="form-label">选择日期</view>
+    <picker mode="multiSelector" range="{{dateRange}}" bindchange="onDateChange">
+      <view class="picker-value">
+        <text>{{cycleDates.length > 0 ? cycleDates.join('、') : '请选择日期'}}</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 每日完成次数 -->
+  <view class="form-group">
+    <view class="form-label">每日完成次数</view>
+    <picker mode="selector" range="{{dailyTargets}}" bindchange="onDailyTargetChange">
+      <view class="picker-value">
+        <text>{{dailyTarget}}次</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+    <view class="form-tip">未完成指定次数时，会在历史完成时间后提醒</view>
+  </view>
+
+  <!-- 提醒时间 -->
+  <view class="form-group">
+    <view class="form-label">提醒时间（可选）</view>
+    <picker mode="time" value="{{remindTime}}" bindchange="onTimeChange">
+      <view class="picker-value">
+        <text>{{remindTime || '不设置'}}</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+    <view class="form-tip">在事项执行时间后2-4小时提醒</view>
+  </view>
+
+  <!-- 选择图标 -->
+  <view class="form-group">
+    <view class="form-label">图标</view>
+    <view class="icon-grid">
+      <view
+        class="icon-item {{icon === item.icon ? 'selected' : ''}}"
+        wx:for="{{icons}}"
+        wx:key="icon"
+        data-icon="{{item.icon}}"
+        data-bg="{{item.bg}}"
+        bindtap="selectIcon"
+        style="background: {{item.bg}}"
+      >
+        <text>{{item.icon}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer-btns">
+    <button class="btn btn-default" bindtap="onCancel">取消</button>
+    <button class="btn btn-primary" bindtap="save">保存</button>
+  </view>
+</view>

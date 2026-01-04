@@ -1,0 +1,55 @@
+<!--pages/mine/mine.wxml-->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-card" bindtap="getUserProfile">
+    <view class="user-avatar">
+      <image src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+    </view>
+    <view class="user-info" wx:if="{{userInfo}}">
+      <view class="user-name">{{userInfo.nickName}}</view>
+      <view class="user-desc">点击重新授权</view>
+    </view>
+    <view class="user-info" wx:else>
+      <view class="user-name">点击登录</view>
+      <view class="user-desc">登录后同步数据</view>
+    </view>
+    <view class="arrow">›</view>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-card" wx:if="{{userInfo}}">
+    <view class="stat-item">
+      <view class="stat-value">{{stats.totalItems}}</view>
+      <view class="stat-label">事项数</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{stats.totalCheckins}}</view>
+      <view class="stat-label">完成次数</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{stats.continuousDays}}</view>
+      <view class="stat-label">连续天数</view>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-card" wx:if="{{userInfo}}">
+    <view
+      class="menu-item"
+      wx:for="{{menus}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onMenuTap"
+    >
+      <view class="menu-icon">{{item.icon}}</view>
+      <view class="menu-name">{{item.name}}</view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-btn" wx:if="{{userInfo}}" bindtap="logout">退出登录</view>
+
+  <!-- 版本信息 -->
+  <view class="version">版本 1.0.0</view>
+</view>

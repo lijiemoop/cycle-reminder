@@ -1,0 +1,17 @@
+# WeChat Mini Program
+node_modules/
+.vscode/
+*.log
+.DS_Store
+
+# Cloud development
+cloudfunctions/**/node_modules/
+
+# IDE
+.idea/
+*.suo
+*.nvue
+.vcoder
+
+# WeChat specific
+project.config.json

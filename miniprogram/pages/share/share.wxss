@@ -1,0 +1,152 @@
+/* pages/share/share.wxss */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+  color: #999;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 48rpx;
+}
+
+.item-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.icon-text {
+  font-size: 56rpx;
+}
+
+.item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.item-desc {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.item-members {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.join-section {
+  text-align: center;
+}
+
+.join-tip {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 48rpx;
+}
+
+.join-btn {
+  width: 400rpx;
+}
+
+.joined-section {
+  text-align: center;
+}
+
+.checkin-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 48rpx 32rpx;
+}
+
+.checkin-progress {
+  margin-bottom: 32rpx;
+}
+
+.progress-circle {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 8rpx solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16rpx;
+}
+
+.progress-circle.completed {
+  border-color: #07c160;
+  background: #e8f5e9;
+}
+
+.progress-count {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.progress-divider {
+  font-size: 32rpx;
+  color: #999;
+  margin: 0 4rpx;
+}
+
+.progress-target {
+  font-size: 32rpx;
+  color: #999;
+}
+
+.progress-circle.completed .progress-count {
+  color: #07c160;
+}
+
+.progress-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.checkin-actions {
+  margin-top: 24rpx;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  font-size: 26rpx;
+  color: #999;
+  padding: 0;
+}
+
+.btn-text::after {
+  display: none;
+}
+
+.checkin-btn {
+  width: 400rpx;
+}
+
+.mt-30 {
+  margin-top: 30rpx;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}

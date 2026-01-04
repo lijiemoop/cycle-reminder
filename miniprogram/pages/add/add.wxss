@@ -1,0 +1,110 @@
+/* pages/add/add.wxss */
+.form-group {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  font-size: 30rpx;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.form-textarea {
+  font-size: 30rpx;
+  width: 100%;
+  height: 160rpx;
+  line-height: 1.5;
+}
+
+.picker-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  font-size: 30rpx;
+  color: #333;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.arrow {
+  color: #999;
+  font-size: 32rpx;
+}
+
+.form-tip {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 12rpx;
+}
+
+.week-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.week-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  border-radius: 12rpx;
+  background: #f5f5f5;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.week-day.active {
+  background: #07c160;
+  color: #fff;
+}
+
+.week-day checkbox {
+  display: none;
+}
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.icon-item {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  transition: all 0.2s;
+}
+
+.icon-item.selected {
+  box-shadow: 0 0 0 4rpx #07c160;
+}
+
+.footer-btns {
+  display: flex;
+  gap: 24rpx;
+  padding: 24rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f5f5f5;
+}
+
+.footer-btns .btn {
+  flex: 1;
+}

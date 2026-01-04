@@ -1,0 +1,59 @@
+<!--pages/share/share.wxml-->
+<view class="container">
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 分享内容 -->
+  <view wx:else>
+    <!-- 事项信息 -->
+    <view class="item-card">
+      <view class="item-icon" style="background: {{item.iconBg || '#07c160'}}">
+        <text class="icon-text">{{item.icon || '📌'}}</text>
+      </view>
+      <view class="item-info">
+        <view class="item-name">{{item.name}}</view>
+        <view class="item-desc" wx:if="{{item.description}}">{{item.description}}</view>
+        <view class="item-members">
+          <text>{{item.members ? item.members.length : 0}}人参与</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 未加入状态 -->
+    <view class="join-section" wx:if="{{!joined}}">
+      <view class="join-tip">加入后可查看完成记录并参与完成</view>
+      <button class="btn btn-primary join-btn" bindtap="joinItem">加入事项</button>
+    </view>
+
+    <!-- 已加入状态 -->
+    <view class="joined-section" wx:else>
+      <view class="checkin-card">
+        <view class="checkin-progress">
+          <view class="progress-circle {{todayChecked ? 'completed' : ''}}">
+            <text class="progress-count">{{checkinCount || 0}}</text>
+            <text class="progress-divider">/</text>
+            <text class="progress-target">{{dailyTarget || 1}}</text>
+          </view>
+          <view class="progress-label">
+            <text wx:if="{{todayChecked}}">今日已完成</text>
+            <text wx:else>今日还需完成 {{dailyTarget - (checkinCount || 0)}} 次</text>
+          </view>
+        </view>
+        <button
+          class="btn {{checkinCount > 0 ? 'btn-default' : 'btn-primary'}} checkin-btn"
+          bindtap="onCheckin"
+        >
+          {{checkinCount > 0 ? '再完成一次' : '立即完成'}}
+        </button>
+        <view class="checkin-actions" wx:if="{{checkinCount > 0}}">
+          <button class="btn-text" bindtap="uncheckin">取消最近一次</button>
+        </view>
+      </view>
+
+      <button class="btn btn-default mt-30" bindtap="goToDetail">查看详情</button>
+      <button class="btn btn-default mt-20" bindtap="goToIndex">返回首页</button>
+    </view>
+  </view>
+</view>
